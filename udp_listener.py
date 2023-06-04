@@ -115,16 +115,17 @@ def main(argv=sys.argv[1:], write=write, log=log):
     signal.signal(signal.SIGINT, quitter)
 
     try:
+        data = bytearray(args.buf)
         while True:
             try:
-                data, _ = sock.recvfrom(args.buf)
+                msg_len, _ = sock.recvfrom_into(data)
             except socket.error as err:
                 if err.errno == errno.EBADF:
                     break
                 if err.errno == errno.EINTR:
                     continue
                 raise
-            write(data)
+            write(data[:msg_len])
             counter[0] += 1
     finally:
         sock.close()
