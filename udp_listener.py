@@ -116,6 +116,7 @@ def main(argv=sys.argv[1:], write=write, log=log):
 
     try:
         data = bytearray(args.buf)
+        view = memoryview(data)
         while True:
             try:
                 msg_len, _ = sock.recvfrom_into(data)
@@ -125,7 +126,7 @@ def main(argv=sys.argv[1:], write=write, log=log):
                 if err.errno == errno.EINTR:
                     continue
                 raise
-            write(data[:msg_len])
+            write(view[:msg_len])
             counter[0] += 1
     finally:
         sock.close()
