@@ -41,7 +41,8 @@ def noop_log(msg):
 
 def write(msg, end=b'\n'):
     try:
-        binary_stdout.write(msg + end)
+        binary_stdout.write(msg)
+        binary_stdout.write(end)
     except IOError:
         pass
 
