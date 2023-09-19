@@ -1,0 +1,19 @@
+[project]
+name = "udp_listener"
+version = "1.0"
+description = "A little UDP server to listen for things like StatsD metrics"
+authors = [{name = "Tim Burke", email = "tim.burke@gmail.com"}]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python :: 2",
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Topic :: Software Development",
+]
+
+[project.urls]
+Homepage = "https://github.com/tipabu/udp_listener"
+
+[project.scripts]
+udp-listener = "udp_listener:main"
